@@ -1,0 +1,80 @@
+export const products = [
+  {
+    id: 1,
+    title: "Wireless Noise Cancelling Headphones, Over-ear",
+    price: 299,
+    originalPrice: 399, // For discount UI
+    rating: 4.8,
+    reviews: 2450,
+    image: "🎧",
+    category: "Electronics",
+    isPrime: true,
+  },
+  {
+    id: 2,
+    title: "Men's Cotton Classic Fit Crew T-Shirt (Pack of 3)",
+    price: 35,
+    originalPrice: 45,
+    rating: 4.3,
+    reviews: 800,
+    image: "👕",
+    category: "Fashion",
+    isPrime: true,
+  },
+  {
+    id: 3,
+    title: "4K Ultra HD Action Camera with Waterproof Case",
+    price: 89,
+    originalPrice: 120,
+    rating: 4.6,
+    reviews: 120,
+    image: "📷",
+    category: "Electronics",
+    isPrime: false,
+  },
+  {
+    id: 4,
+    title: "Running Shoes - Lightweight & Breathable",
+    price: 65,
+    originalPrice: 65, // No discount
+    rating: 4.1,
+    reviews: 50,
+    image: "👟",
+    category: "Fashion",
+    isPrime: true,
+  },
+  {
+    id: 4,
+    title: "Running Shoes - Lightweight & Breathable",
+    price: 65,
+    originalPrice: 65, // No discount
+    rating: 4.1,
+    reviews: 50,
+    image: "👟",
+    category: "Fashion",
+    isPrime: true,
+  },
+  {
+    id: 4,
+    title: "Running Shoes - Lightweight & Breathable",
+    price: 65,
+    originalPrice: 65, // No discount
+    rating: 4.1,
+    reviews: 50,
+    image: "👟",
+    category: "Fashion",
+    isPrime: true,
+  },
+  {
+    id: 4,
+    title: "Running Shoes - Lightweight & Breathable",
+    price: 65,
+    originalPrice: 65, // No discount
+    rating: 4.1,
+    reviews: 50,
+    image: "👟",
+    category: "Fashion",
+    isPrime: true,
+  },
+  // Add more items to test the grid...
+];

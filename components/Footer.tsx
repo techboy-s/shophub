@@ -88,6 +88,8 @@ const Footer = () => {
                 <input 
                   type="email" 
                   placeholder="Email address"
+                  // 👇 ADD THIS LINE HERE
+                  suppressHydrationWarning={true}
                   className="w-full px-3 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" 
                 />
                 <button className="w-full flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium py-2 rounded-lg transition-colors">

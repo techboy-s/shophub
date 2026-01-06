@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import { ArrowRight, Smartphone, Shirt, Watch, Monitor, Zap } from 'lucide-react';
 import ProductCard from '@/components/ProductCard';
+import { products } from '@/lib/data';
 
 // --- Mock Data (In a real app, this comes from your Database) ---
 const categories = [
@@ -12,12 +13,12 @@ const categories = [
   { name: 'Deals', icon: Zap, color: 'bg-yellow-100 text-yellow-600' },
 ];
 
-const products = [
-  { id: 1, title: 'Wireless Noise Cancelling Headphones', price: 299, rating: 4.8, reviews: 120, image: '🎧', tag: 'Best Seller' },
-  { id: 2, title: 'Smart Fitness Watch Series 7', price: 199, rating: 4.5, reviews: 85, image: '⌚', tag: 'Sale' },
-  { id: 3, title: 'Ergonomic Mechanical Keyboard', price: 120, rating: 4.9, reviews: 230, image: '⌨️', tag: null },
-  { id: 4, title: '4K Ultra HD Action Camera', price: 349, rating: 4.6, reviews: 50, image: '📷', tag: 'New' },
-];
+// const products = [
+//   { id: 1, title: 'Wireless Noise Cancelling Headphones', price: 299, rating: 4.8, reviews: 120, image: '🎧', tag: 'Best Seller' },
+//   { id: 2, title: 'Smart Fitness Watch Series 7', price: 199, rating: 4.5, reviews: 85, image: '⌚', tag: 'Sale' },
+//   { id: 3, title: 'Ergonomic Mechanical Keyboard', price: 120, rating: 4.9, reviews: 230, image: '⌨️', tag: null },
+//   { id: 4, title: '4K Ultra HD Action Camera', price: 349, rating: 4.6, reviews: 50, image: '📷', tag: 'New' },
+// ];
 
 export default function Home() {
   return (
