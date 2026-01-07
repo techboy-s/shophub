@@ -1,4 +1,4 @@
-
+'use client';
 
 import React from 'react';
 import { products } from '@/lib/data'; // Make sure this file exists!
