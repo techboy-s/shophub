@@ -44,7 +44,7 @@ export const products = [
     isPrime: true,
   },
   {
-    id: 4,
+    id: 5,
     title: "Running Shoes - Lightweight & Breathable",
     price: 65,
     originalPrice: 65, // No discount
@@ -55,7 +55,7 @@ export const products = [
     isPrime: true,
   },
   {
-    id: 4,
+    id: 6,
     title: "Running Shoes - Lightweight & Breathable",
     price: 65,
     originalPrice: 65, // No discount
@@ -66,7 +66,18 @@ export const products = [
     isPrime: true,
   },
   {
-    id: 4,
+    id: 7,
+    title: "Running Shoes - Lightweight & Breathable",
+    price: 65,
+    originalPrice: 65, // No discount
+    rating: 4.1,
+    reviews: 50,
+    image: "👟",
+    category: "Fashion",
+    isPrime: true,
+  },
+  {
+    id: 8,
     title: "Running Shoes - Lightweight & Breathable",
     price: 65,
     originalPrice: 65, // No discount

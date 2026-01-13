@@ -6,7 +6,7 @@ import { ShoppingCart } from "lucide-react";
 // UPDATE: Changed price from string to number to match your data
 interface Product {
   id: number;
-  name: string; // Ensure your data uses 'name' (or change this to 'title' if your data uses title)
+  title: string; // Ensure your data uses 'name' (or change this to 'title' if your data uses title)
   price: number; 
   category: string;
   image: string;
@@ -19,7 +19,7 @@ export default function AddToCartButton({ product }: { product: Product }) {
     // UPDATE: No need to parse string anymore, just use the number directly
     addItem({
       id: product.id,
-      name: product.name,
+      name: product.title,
       price: product.price,
       category: product.category,
       image: product.image,
@@ -32,6 +32,7 @@ export default function AddToCartButton({ product }: { product: Product }) {
   return (
     <button 
       onClick={handleAddToCart}
+      suppressHydrationWarning={true}
       className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg shadow-indigo-200 dark:shadow-none transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2"
     >
       <ShoppingCart className="h-5 w-5" />

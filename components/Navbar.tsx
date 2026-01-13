@@ -12,6 +12,7 @@ import {
   LogOut 
 } from 'lucide-react';
 import Link from 'next/link'
+import CartBadge from './CartBadge';
 
 const NavbarColored = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -44,8 +45,10 @@ const NavbarColored = () => {
               <input
                 type="text"
                 placeholder="Search for products, brands and more..."
+                 suppressHydrationWarning={true}
                 className="w-full bg-white text-slate-800 border-none rounded-full py-2.5 pl-10 pr-12 focus:outline-none focus:ring-4 focus:ring-indigo-500/30 shadow-sm transition-all duration-200"
               />
+              
               <Search className="absolute left-3.5 top-2.5 h-5 w-5 text-slate-400 group-focus-within:text-indigo-600 transition-colors" />
               <button className="absolute right-2 top-1.5 bg-indigo-100 hover:bg-indigo-200 text-indigo-700 px-3 py-1 rounded-full text-xs font-bold transition-colors">
                 Search
@@ -96,15 +99,7 @@ const NavbarColored = () => {
             </button>
 
             {/* Cart with Yellow Badge */}
-            <button className="relative text-indigo-100 hover:text-white hover:bg-indigo-500/50 p-2 rounded-full transition-all group">
-              <span className="sr-only">Cart</span>
-              <ShoppingBag className="h-6 w-6 group-hover:animate-bounce-short" /> {/* Added a custom bounce animation class if you have one, or just standard hover */}
-              {cartCount > 0 && (
-                <span className="absolute top-0 right-0 bg-yellow-400 text-indigo-900 text-[10px] font-bold h-5 w-5 rounded-full flex items-center justify-center ring-2 ring-indigo-600 transform scale-100 group-hover:scale-110 transition-transform">
-                  {cartCount}
-                </span>
-              )}
-            </button>
+           <CartBadge/>
 
             {/* Mobile Menu Button */}
             <div className="lg:hidden flex items-center ml-2">
@@ -121,6 +116,7 @@ const NavbarColored = () => {
             <input
               type="text"
               placeholder="Search products..."
+              suppressHydrationWarning={true}
               className="w-full bg-indigo-700 text-white placeholder-indigo-300 border border-transparent focus:border-indigo-400 rounded-lg py-2.5 pl-10 pr-4 focus:outline-none focus:ring-1 focus:ring-indigo-400"
             />
             <Search className="absolute left-3 top-2.5 h-5 w-5 text-indigo-300" />

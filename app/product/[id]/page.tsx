@@ -6,6 +6,7 @@ import { notFound } from 'next/navigation';
 import { Star, Truck, ShieldCheck, ArrowLeft, Heart, Share2 } from 'lucide-react';
 import Link from 'next/link';
 import ProductGallery from '@/components/ProductGallery';
+import AddToCartButton from '@/components/AddToCartButton';
 
 // UPDATE 1: Type definition for Next.js 15
 interface PageProps {
@@ -14,16 +15,16 @@ interface PageProps {
 
 // UPDATE 2: Component must be 'async'
 export default async function ProductDetailsPage({ params }: PageProps) {
-  
+
   // UPDATE 3: Await the params before using them
   const { id } = await params;
-  
+
   // 4. Find the product
   const product = products.find((p) => p.id === Number(id));
 
   // 5. Handle "Product Not Found"
   if (!product) {
-    notFound(); 
+    notFound();
   }
 
   // Mocking multiple images for the gallery
@@ -32,20 +33,20 @@ export default async function ProductDetailsPage({ params }: PageProps) {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 pt-24 pb-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Back Button */}
-        <Link 
-          href="/product" 
+        <Link
+          href="/product"
           className="inline-flex items-center text-sm text-slate-500 hover:text-indigo-600 mb-8 transition-colors"
         >
           <ArrowLeft className="h-4 w-4 mr-2" /> Back to Products
         </Link>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          
+
           {/* --- LEFT COLUMN: Image Gallery --- */}
           <div>
-             {/* Ensure you have created this component, otherwise comment it out */}
+            {/* Ensure you have created this component, otherwise comment it out */}
             <ProductGallery images={galleryImages} />
           </div>
 
@@ -59,7 +60,7 @@ export default async function ProductDetailsPage({ params }: PageProps) {
               <div className="flex items-center gap-1 text-amber-400">
                 <Star className="fill-current h-4 w-4" />
                 <span className="text-slate-700 dark:text-slate-300 text-sm font-medium">
-                  4.5 ({120} reviews) 
+                  4.5 ({120} reviews)
                   {/* Note: I hardcoded rating/reviews because your data source might not have them yet */}
                 </span>
               </div>
@@ -67,7 +68,7 @@ export default async function ProductDetailsPage({ params }: PageProps) {
 
             {/* Title */}
             <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4 leading-tight">
-              {product.title} 
+              {product.title}
               {/* Note: Your previous data used 'name', this code used 'title'. I changed it to 'name' to match your array. */}
             </h1>
 
@@ -86,7 +87,12 @@ export default async function ProductDetailsPage({ params }: PageProps) {
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
               <button className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg shadow-indigo-200 dark:shadow-none transition-all transform hover:-translate-y-1">
-                Add to Cart
+                <AddToCartButton
+                  product={{
+                    ...product,
+                    title: product.title, // Maps 'title' to 'name' so the button understands it
+                  }}
+                />
               </button>
               <button className="flex items-center justify-center bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 text-slate-700 dark:text-white px-6 py-4 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors">
                 <Heart className="h-6 w-6" />
