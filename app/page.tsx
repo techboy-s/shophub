@@ -1,10 +1,9 @@
-'use client';
 import Link from 'next/link';
 import { ArrowRight, Smartphone, Shirt, Watch, Monitor, Zap } from 'lucide-react';
 import ProductCard from '@/components/ProductCard';
-import { products } from '@/lib/data';
+import { prisma } from '@/lib/prisma'; // 1. Import Prisma
 
-// --- Mock Data (In a real app, this comes from your Database) ---
+// --- Static Category Data (UI Only) ---
 const categories = [
   { name: 'Mobiles', icon: Smartphone, color: 'bg-blue-100 text-blue-600' },
   { name: 'Fashion', icon: Shirt, color: 'bg-pink-100 text-pink-600' },
@@ -13,14 +12,19 @@ const categories = [
   { name: 'Deals', icon: Zap, color: 'bg-yellow-100 text-yellow-600' },
 ];
 
-// const products = [
-//   { id: 1, title: 'Wireless Noise Cancelling Headphones', price: 299, rating: 4.8, reviews: 120, image: '🎧', tag: 'Best Seller' },
-//   { id: 2, title: 'Smart Fitness Watch Series 7', price: 199, rating: 4.5, reviews: 85, image: '⌚', tag: 'Sale' },
-//   { id: 3, title: 'Ergonomic Mechanical Keyboard', price: 120, rating: 4.9, reviews: 230, image: '⌨️', tag: null },
-//   { id: 4, title: '4K Ultra HD Action Camera', price: 349, rating: 4.6, reviews: 50, image: '📷', tag: 'New' },
-// ];
+// 2. Fetch Data from Database
+async function getFeaturedProducts() {
+  const products = await prisma.product.findMany({
+    take: 8, // Limit to 8 products for the home page
+    orderBy: { createdAt: 'desc' }
+  });
+  return products;
+}
 
-export default function Home() {
+// 3. Component must be 'async'
+export default async function Home() {
+  const products = await getFeaturedProducts();
+
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
       
@@ -43,14 +47,13 @@ export default function Home() {
                 <p className="text-indigo-100 mb-8 text-lg">
                   Upgrade your gear with our exclusive summer collection. Limited time offer.
                 </p>
-                <Link href="/products" className="inline-flex items-center bg-white text-indigo-600 font-bold py-3 px-8 rounded-full hover:bg-gray-50 transition-colors shadow-lg">
+                <Link href="/product" className="inline-flex items-center bg-white text-indigo-600 font-bold py-3 px-8 rounded-full hover:bg-gray-50 transition-colors shadow-lg">
                   Shop Now <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
              </div>
 
              {/* Hero Image Placeholder */}
              <div className="relative z-10 w-full md:w-1/2 flex justify-center">
-                {/* Replace this div with a real <Image /> tag later */}
                 <div className="w-64 h-64 md:w-80 md:h-80 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl flex items-center justify-center text-6xl shadow-2xl transform rotate-6 hover:rotate-0 transition-transform duration-500">
                   🛍️
                 </div>
@@ -76,17 +79,17 @@ export default function Home() {
         </div>
       </div>
 
-      {/* 3. Featured Products Grid */}
+      {/* 3. Featured Products Grid (REAL DATA) */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Trending Products</h2>
-          <Link href="/products" className="text-indigo-600 font-medium hover:text-indigo-700 flex items-center gap-1">
+          <Link href="/product" className="text-indigo-600 font-medium hover:text-indigo-700 flex items-center gap-1">
             View All <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {products.map((product) => (
+          {products.slice(0, 4).map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
@@ -105,13 +108,15 @@ export default function Home() {
         </div>
       </div>
 
-      {/* 5. "Recommended for You" Section (Reusing logic) */}
+      {/* 5. "Recommended for You" Section (REAL DATA - Reverse Order) */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-16">
         <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Recommended For You</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {products.slice(0, 4).reverse().map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
+          {/* We take the next 4 items, or reuse items if you don't have enough yet */}
+          {products.length > 4 
+            ? products.slice(4, 8).map((product) => <ProductCard key={product.id} product={product} />)
+            : products.map((product) => <ProductCard key={product.id} product={product} />) 
+          }
         </div>
       </div>
 
