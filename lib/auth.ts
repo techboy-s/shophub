@@ -6,6 +6,18 @@ export const auth = betterAuth({
   database: prismaAdapter(prisma, {
     provider: "postgresql", 
   }),
+
+  user: {
+    additionalFields: {
+      role: {
+        type: "string",
+        required: false,
+        defaultValue: "user",
+        input: false, // Don't let users set their own role during signup!
+      },
+    },
+  },
+
   socialProviders: {
     google: {
       clientId: process.env.GOOGLE_CLIENT_ID as string,
