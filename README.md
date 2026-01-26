@@ -1,7 +1,7 @@
 # ShopHub - Full Stack E-Commerce Platform
 
 ## 🚀 Live Demo
-[[View Live Demo]npm run dev((https://shophub-ten-coral.vercel.app/))](https://shophub-ten-coral.vercel.app/)
+((https://shophub-ten-coral.vercel.app/))](https://shophub-ten-coral.vercel.app/)
 
 ## 📖 About
 ShopHub is a production-ready e-commerce platform built with the modern Next.js tech stack. It features a complete shopping experience, including secure authentication, a dedicated admin dashboard for product management, and real-time payment processing via Stripe.
