@@ -13,28 +13,28 @@ import { Metadata } from "next";
 
 
 // 1. GENERATE DYNAMIC METADATA - this is for SEO Purpose
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { id } = await params;
-  const product = await prisma.product.findUnique({
-    where: { id: Number(id) },
-  });
+// export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+//   const { id } = await params;
+//   const product = await prisma.product.findUnique({
+//     where: { id: Number(id) },
+//   });
 
-  if (!product) {
-    return {
-      title: "Product Not Found",
-    };
-  }
+//   if (!product) {
+//     return {
+//       title: "Product Not Found",
+//     };
+//   }
 
-  return {
-    title: product.name,
-    description: product.description.slice(0, 160), // First 160 chars
-    openGraph: {
-      title: product.name,
-      description: product.description,
-      images: [{ url: product.image }], // Shows the actual product image on social media
-    },
-  };
-}
+//   return {
+//     title: product.name,
+//     description: product.description.slice(0, 160), // First 160 chars
+//     openGraph: {
+//       title: product.name,
+//       description: product.description,
+//       images: [{ url: product.image }], // Shows the actual product image on social media
+//     },
+//   };
+// }
 
 //main function 
 
