@@ -45,8 +45,26 @@ import Footer from "@/components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "ShopHub - Best Deals Online",
-  description: "Your favorite place to shop.",
+  title: {
+    default: "ShopHub | Premium Tech Gear",
+    template: "%s | ShopHub", // This adds "| ShopHub" to every page title automatically
+  },
+  description: "The best place to buy modern electronics, gadgets, and fashion. Fast shipping and secure checkout.",
+  openGraph: {
+    title: "ShopHub | Premium Tech Gear",
+    description: "Upgrade your lifestyle with the latest tech and fashion.",
+    url: "https://shophub-demo.vercel.app", // Replace with your real URL later
+    siteName: "ShopHub",
+    images: [
+      {
+        url: "https://images.unsplash.com/photo-1498049860654-af1a5c5668ba?auto=format&fit=crop&w=1200&q=80", // A generic banner image
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
 };
 
 export default function RootLayout({

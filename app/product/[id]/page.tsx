@@ -7,11 +7,42 @@ import { Star, Truck, ShieldCheck, ArrowLeft, Heart, Share2 } from 'lucide-react
 import Link from 'next/link';
 import ProductGallery from '@/components/ProductGallery';
 import AddToCartButton from '@/components/AddToCartButton';
+import { prisma } from "@/lib/prisma";
+import { Metadata } from "next";
+
+
+
+// 1. GENERATE DYNAMIC METADATA - this is for SEO Purpose
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { id } = await params;
+  const product = await prisma.product.findUnique({
+    where: { id: Number(id) },
+  });
+
+  if (!product) {
+    return {
+      title: "Product Not Found",
+    };
+  }
+
+  return {
+    title: product.name,
+    description: product.description.slice(0, 160), // First 160 chars
+    openGraph: {
+      title: product.name,
+      description: product.description,
+      images: [{ url: product.image }], // Shows the actual product image on social media
+    },
+  };
+}
+
+//main function 
 
 // UPDATE 1: Type definition for Next.js 15
 interface PageProps {
   params: Promise<{ id: string }>;
 }
+
 
 // UPDATE 2: Component must be 'async'
 export default async function ProductDetailsPage({ params }: PageProps) {
@@ -90,7 +121,7 @@ export default async function ProductDetailsPage({ params }: PageProps) {
                 <AddToCartButton
                   product={{
                     ...product,
-                    title: product.title, // Maps 'title' to 'name' so the button understands it
+                    name: product.title, 
                   }}
                 />
               </button>

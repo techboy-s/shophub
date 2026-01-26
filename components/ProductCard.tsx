@@ -90,6 +90,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Star } from 'lucide-react';
 import AddToCartButton from './AddToCartButton';
+import Image from "next/image";
 
 // Updated Interface to match your Prisma DB Model
 interface ProductProps {
@@ -115,7 +116,7 @@ const ProductCard = ({ product }: { product: ProductProps }) => {
       
       {/* 1. Image Area - UPDATED to use <img> tag */}
       <Link href={`/product/${product.id}`} className="relative h-60 bg-slate-50 dark:bg-slate-800 flex items-center justify-center overflow-hidden group-hover:bg-slate-100 transition-colors">
-        <img 
+        <img
           src={product.image} 
           alt={product.name}
           className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"

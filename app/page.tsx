@@ -42,7 +42,7 @@ export default async function Home() {
                   Season Sale
                 </span>
                 <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4 leading-tight">
-                  Up to 50% Off on <br/> Latest Tech
+                  Up to 50% Off on <br/> Latest Products
                 </h1>
                 <p className="text-indigo-100 mb-8 text-lg">
                   Upgrade your gear with our exclusive summer collection. Limited time offer.

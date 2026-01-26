@@ -7,6 +7,12 @@ export const auth = betterAuth({
     provider: "postgresql", 
   }),
 
+  emailAndPassword: {
+    enabled: true,
+    // Optional: require email verification before login?
+    // requireEmailVerification: true, 
+  },
+
   user: {
     additionalFields: {
       role: {
